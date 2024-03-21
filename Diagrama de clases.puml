@@ -1,0 +1,36 @@
+@startuml
+
+class Materia {
+    - String nombre;
+    - String codigo;
+    - List<Materia> correlativas;
+
+    + void agregarCorrelativa(Materia ... correlativas);
+}
+
+class Alumno {
+    - String nombre;
+    - String apellido;
+    - String legajo;
+    - List<Materia> materiasAprobadas;
+
+    + void agregarMateriaAprobada(Materia ... materias)
+    + boolean tenesAprobada(Materia unaMateria)
+    + boolean cumplisCorrelativasParaCursar(Materia unaMateria)
+}
+
+class Inscripcion {
+    - Alumno alumno;
+    - List<Materia> materias;
+
+    + void anotarseA(Materia ... materias)
+    + boolean estaAprobada()
+}
+
+Inscripcion --> Alumno
+Inscripcion -->"*" Materia
+Materia -->"*" Materia
+Alumno -->"*" Materia
+
+@enduml
+
